@@ -1,0 +1,23 @@
+#main-right-content h2 {
+    line-height: 55px;
+    text-align: center;
+    color: #0a44ae;
+    font-size: 18px;
+    font-weight: bold;
+    border-bottom: 1px dashed #CCC;
+    width: 90%;
+    margin: 10px auto;
+}
+#main-right-content #info {
+    width: 420px;
+    margin: 8px auto;
+}
+#main-right-content #content p {
+    text-indent: 30px;
+    line-height: 1.5em;
+}
+#comment input[type="text"] {
+    width: 200px;
+    height: 20px;
+    line-height: 20px;
+}

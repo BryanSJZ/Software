@@ -1,0 +1,7 @@
+#main-right-content form {
+    width: 300px;
+    margin: 60px auto;
+}
+form input {
+    margin-top: 20px;
+}
