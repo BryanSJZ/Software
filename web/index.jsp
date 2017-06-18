@@ -11,6 +11,12 @@
     <title>$Title$</title>
   </head>
   <body>
-  $END$
+    <form action="/user?method=register" method="post" enctype="multipart/form-data">
+      <%--<input type="hidden" name="method" value="register">--%>
+      <input name="username" type="text"><br>
+      <input name="password" type="text"><br>
+      <input type="file" name="photo">
+      <input type="submit">
+    </form>
   </body>
 </html>

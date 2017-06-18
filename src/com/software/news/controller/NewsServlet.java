@@ -1,7 +1,13 @@
 package com.software.news.controller;
 
 import com.software.news.dao.NewsDao;
+import com.software.news.dto.NewsDto;
 import com.software.news.entity.News;
+import com.software.news.entity.NewsModule;
+import com.software.news.service.NewsModuleService;
+import com.software.news.service.NewsService;
+import com.software.news.service.impl.NewsModuleServiceImpl;
+import com.software.news.service.impl.NewsServiceImpl;
 import com.software.news.util.BaseServlet;
 
 import javax.servlet.ServletException;
@@ -20,7 +26,9 @@ import java.util.List;
 @WebServlet(name = "NewsServlet",urlPatterns = "/news")
 public class NewsServlet extends BaseServlet {
 
-    private NewsDao newsDao = new NewsDao();
+    private NewsService newsService = new NewsServiceImpl();
+    private NewsModuleService newsModuleService = new NewsModuleServiceImpl();
+
 
     /**
      * 跳转到新闻详情页面
@@ -29,7 +37,7 @@ public class NewsServlet extends BaseServlet {
      */
     public String query(HttpServletRequest request, HttpServletResponse response) {
         int id = Integer.parseInt(request.getParameter("id"));
-        News news = newsDao.queryById(id);
+        News news = newsService.queryById(id);
         request.setAttribute("news",news);
         return "f:新闻详情页面";
     }
@@ -40,9 +48,9 @@ public class NewsServlet extends BaseServlet {
      * @param response 响应
      */
     public String list(HttpServletRequest request, HttpServletResponse response) {
-        List<News> newsList = newsDao.queryAll();
+        List<NewsDto> newsList = newsService.queryAllNews();
         request.setAttribute("list",newsList);
-        return "f:列表页";
+        return "f:WEB-INF/views/backpages/article-list.jsp";
     }
 
     /**
@@ -50,11 +58,13 @@ public class NewsServlet extends BaseServlet {
      * @param request 请求
      * @param response 响应
      */
-    public String toUpdate(HttpServletRequest request, HttpServletResponse response) {
+    public String toUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception {
         int id = Integer.parseInt(request.getParameter("id"));
-        News news = newsDao.queryById(id);
+        News news = newsService.queryById(id);
+        List<NewsModule> moduleList = newsModuleService.listAll();
         request.setAttribute("news",news);
-        return "f:新闻修改页面";
+        request.setAttribute("moduleList",moduleList);
+        return "f:WEB-INF/views/backpages/article-edit.jsp";
     }
 
     /**
@@ -63,7 +73,17 @@ public class NewsServlet extends BaseServlet {
      * @param response 响应
      */
     public String updateById(HttpServletRequest request, HttpServletResponse response) {
-        return null;
+        int id = Integer.parseInt(request.getParameter("id"));
+        String title = request.getParameter("title");
+        String type = request.getParameter("type");
+        String content = request.getParameter("content");
+        News news = new News();
+        news.setId(id);
+        news.setTitle(title);
+        news.setType(type);
+        news.setContent(content);
+        newsService.updateById(news);
+        return "f:news?method=list";
     }
 
     /**
@@ -72,7 +92,9 @@ public class NewsServlet extends BaseServlet {
      * @param response 响应
      */
     public String delById(HttpServletRequest request, HttpServletResponse response) {
-        return null;
+        int id = Integer.parseInt(request.getParameter("id"));
+        newsService.delById(id);
+        return "r:news?method=list";
     }
 
     /**
@@ -81,7 +103,15 @@ public class NewsServlet extends BaseServlet {
      * @param response 响应
      */
     public String newNews(HttpServletRequest request, HttpServletResponse response) {
-        return null;
+        String title = request.getParameter("title");
+        String content = request.getParameter("content");
+        String type = request.getParameter("type");
+        News news = new News();
+        news.setTitle(title);
+        news.setContent(content);
+        news.setType(type);
+        newsService.newNews(news);
+        return "r:news?method=list";
     }
 
     /**
@@ -89,7 +119,9 @@ public class NewsServlet extends BaseServlet {
      * @param request 请求
      * @param response 响应
      */
-    public String toNewNews(HttpServletRequest request, HttpServletResponse response) {
-        return null;
+    public String toNewNews(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        List<NewsModule> moduleList = newsModuleService.listAll();
+        request.setAttribute("moduleList",moduleList);
+        return "f:WEB-INF/views/backpages/article-add.jsp";
     }
 }

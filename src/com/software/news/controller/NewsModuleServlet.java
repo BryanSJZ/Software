@@ -34,7 +34,7 @@ public class NewsModuleServlet extends BaseServlet {
      * @param response 响应
      */
     public String toAdd(HttpServletRequest request, HttpServletResponse response) {
-        return "f:/WEB-INF/views/backpages/addmodule.jsp";
+        return "f:/WEB-INF/views/backpages/module-add.jsp";
     }
 
     /**
@@ -79,11 +79,11 @@ public class NewsModuleServlet extends BaseServlet {
      * @param request 请求
      * @param response 响应
      */
-    private String toUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public String toUpdate(HttpServletRequest request, HttpServletResponse response) throws Exception {
         int id = Integer.parseInt(request.getParameter("id"));
         NewsModule newsModule = newsModuleService.queryById(id);
         request.setAttribute("newsModule",newsModule);
-        return "f:/WEB-INF/views/backpages/addmodule.jsp";
+        return "f:/WEB-INF/views/backpages/module-edit.jsp";
     }
 
     /**
@@ -91,8 +91,14 @@ public class NewsModuleServlet extends BaseServlet {
      * @param request 请求
      * @param response 响应
      */
-    public String update(HttpServletRequest request, HttpServletResponse response) {
-        return null;
+    public String update(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        int id = Integer.parseInt(request.getParameter("id"));
+        String module = request.getParameter("module");
+        NewsModule newsModule = new NewsModule();
+        newsModule.setId(id);
+        newsModule.setModule(module);
+        newsModuleService.updateById(newsModule);
+        return "r:module?method=list";
     }
 
     /**
@@ -114,7 +120,7 @@ public class NewsModuleServlet extends BaseServlet {
         try {
             list = newsModuleService.listAll();
             request.setAttribute("list",list);
-            return "f:WEB-INF/views/backpages/editmodule.jsp";
+            return "f:WEB-INF/views/backpages/module-list.jsp";
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -48,12 +48,12 @@ public class NewsDao {
      */
     public void updateById(News news){
         DBConn dbConn = new DBConn("db_news");
-        String sql = "UPDATE SET title = ? , content = ? , type = ? , author = ? WHERE id = " + news.getId();
+        String sql = "UPDATE t_news SET title = ? , content = ? , type = ? WHERE id = " + news.getId();
         dbConn.preparedStatement(sql);
         dbConn.setString(1,news.getTitle());
         dbConn.setString(2,news.getContent());
         dbConn.setString(3,news.getType());
-        dbConn.setString(4,news.getAuthor());
+//        dbConn.setString(4,news.getAuthor());
         dbConn.executeUpdate();
         dbConn.close();
     }
@@ -65,12 +65,13 @@ public class NewsDao {
      */
     public News queryById(int id){
         DBConn dbConn = new DBConn("db_news");
-        String sql = "SELECT FORM t_news WHERE id = " + id;
+        String sql = "SELECT * FROM t_news WHERE id = " + id;
         dbConn.preparedStatement(sql);
         ResultSet rs = dbConn.executeQuery();
         News news = new News();
         try {
             while(rs.next()){
+                news.setId(rs.getInt("id"));
                 news.setTitle(rs.getString("title"));
                 news.setContent(rs.getString("content"));
                 news.setType(rs.getString("type"));
