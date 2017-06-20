@@ -64,7 +64,7 @@
 				<dt><i class="Hui-iconfont">&#xe620;</i> 用户管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 				<dd>
 					<ul>
-						<li><a href="user-list.jsp" title="品牌管理">用户列表</a></li>
+						<li><a href="${pageContext.request.contextPath}/user?method=list" title="">用户列表</a></li>
 					</ul>
 				</dd>
 			</dl>

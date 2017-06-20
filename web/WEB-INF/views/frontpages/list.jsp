@@ -84,16 +84,17 @@
                     </c:forEach>
                 </ul>
                 <div id="page">
-                    共<span class="all">34</span>条
-                    <span class="now">1/</span><span class="total">4</span>
-                    <a href="">首页</a>
-                    <a href="">上页</a>
-                    <a href="">下页</a>
-                    <a href="">尾页</a>
-                    <form action="">
-                        <input type="submit" name="" value="转至">
-                        <input type="text" name="" value="">页
-                    </form>
+                    共<span class="all">${splitPage.totalRows}</span>条
+                    <span class="now">${splitPage.currentPage}/</span><span class="total">${splitPage.totalPage}</span>
+                    <a href="${pageContext.request.contextPath}/newsf?method=list&flag=first&current=${splitPage.currentPage}&module=${module}">首页</a>
+                    <a href="${pageContext.request.contextPath}/newsf?method=list&flag=previous&current=${splitPage.currentPage}&module=${module}">上页</a>
+                    <a href="${pageContext.request.contextPath}/newsf?method=list&flag=next&current=${splitPage.currentPage}&module=${module}">下页</a>
+                    <a href="${pageContext.request.contextPath}/newsf?method=list&flag=last&current=${splitPage.currentPage}&module=${module}">尾页</a>
+                </div>
+                <div align="center">
+                    <c:forEach begin="1" end="${splitPage.totalPage}" var="page">
+                        <a href="${pageContext.request.contextPath}/newsf?method=list&flag=${page}&current=${splitPage.currentPage}&module=${module}">${page}</a>
+                    </c:forEach>
                 </div>
             </div>
         </div>

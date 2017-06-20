@@ -5,7 +5,9 @@ import com.software.news.dao.NewsDtoDao;
 import com.software.news.dto.NewsDto;
 import com.software.news.entity.News;
 import com.software.news.service.NewsService;
+import com.software.news.util.SplitPage;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -54,5 +56,16 @@ public class NewsServiceImpl implements NewsService {
     public List<NewsDto> queryByModule(int moduleId) {
         NewsDtoDao newsDtoDao = new NewsDtoDao();
         return newsDtoDao.queryByModule(moduleId);
+    }
+
+    @Override
+    public List<NewsDto> queryByPage(SplitPage splitPage, int module) {
+        NewsDtoDao newsDtoDao = new NewsDtoDao();
+        return newsDtoDao.queryByPage(splitPage,module);
+    }
+
+    @Override
+    public int getTotalRows(int module) throws SQLException {
+        return new NewsDtoDao().getTotalRows(module);
     }
 }

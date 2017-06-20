@@ -46,8 +46,8 @@
 				<dt><i class="Hui-iconfont">&#xe616;</i> 模块管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 				<dd>
 					<ul>
-						<li><a href="module-list.jsp">模块列表</a></li>
-						<li><a href="module-add.jsp">模块增加</a></li>
+						<li><a href="${pageContext.request.contextPath}/module?method=list">模块列表</a></li>
+						<li><a href="${pageContext.request.contextPath}/module?method=toAdd">模块增加</a></li>
 					</ul>
 				</dd>
 			</dl>
@@ -55,8 +55,8 @@
 				<dt><i class="Hui-iconfont">&#xe613;</i> 新闻管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 				<dd>
 					<ul>
-						<li><a href="article-list.jsp">新闻列表</a></li>
-						<li><a href="article-add.jsp">新闻增加</a></li>
+						<li><a href="${pageContext.request.contextPath}/news?method=list">新闻列表</a></li>
+						<li><a href="${pageContext.request.contextPath}/news?method=toNewNews">新闻增加</a></li>
 					</ul>
 				</dd>
 			</dl>
@@ -64,7 +64,7 @@
 				<dt><i class="Hui-iconfont">&#xe620;</i> 用户管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 				<dd>
 					<ul>
-						<li><a href="user-list.jsp" title="品牌管理">用户列表</a></li>
+						<li><a href="${pageContext.request.contextPath}/user?method=list" title="">用户列表</a></li>
 					</ul>
 				</dd>
 			</dl>

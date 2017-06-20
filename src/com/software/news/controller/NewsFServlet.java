@@ -9,6 +9,7 @@ import com.software.news.service.NewsService;
 import com.software.news.service.impl.NewsModuleServiceImpl;
 import com.software.news.service.impl.NewsServiceImpl;
 import com.software.news.util.BaseServlet;
+import com.software.news.util.SplitPage;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,7 +30,20 @@ public class NewsFServlet extends BaseServlet {
     public String list(HttpServletRequest request,HttpServletResponse response) throws Exception {
         int moduleId = Integer.parseInt(request.getParameter("module"));
         List<NewsModule> moduleList = newsModuleService.listAll();
-        List<NewsDto> newsList = newsService.queryByModule(moduleId);
+//        List<NewsDto> newsList = newsService.queryByModule(moduleId);
+        SplitPage splitPage = new SplitPage();
+        int totalRows = newsService.getTotalRows(moduleId);
+        splitPage.setTotalRows(totalRows);
+        String flag = request.getParameter("flag");//flag代表跳转到哪一页
+        String current = request.getParameter("current");//current 代表当前页
+        if(current!=null){
+            int currentPage = Integer.parseInt(current);
+            splitPage.setCurrentPage(currentPage);
+        }
+        int newPage = splitPage.toNewPage(flag);
+        List<NewsDto> newsList = newsService.queryByPage(splitPage,moduleId);
+        request.setAttribute("module",moduleId);
+        request.setAttribute("splitPage",splitPage);
         request.setAttribute("newsList",newsList);
         request.setAttribute("moduleList",moduleList);
         return "WEB-INF/views/frontpages/list.jsp";

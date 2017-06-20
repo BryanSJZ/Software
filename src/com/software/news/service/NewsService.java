@@ -2,7 +2,9 @@ package com.software.news.service;
 
 import com.software.news.dto.NewsDto;
 import com.software.news.entity.News;
+import com.software.news.util.SplitPage;
 
+import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -18,4 +20,6 @@ public interface NewsService {
     public List<News> queryAll();
     public List<NewsDto> queryAllNews();
     public List<NewsDto> queryByModule(int moduleId);
+    public List<NewsDto> queryByPage(SplitPage splitPage,int module);
+    public int getTotalRows(int module) throws SQLException;
 }
