@@ -25,6 +25,26 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public List<Users> queryByStatus(int status) throws SQLException {
-        return usersDao.queryByStatus(0);
+        return usersDao.queryByStatus(status);
+    }
+
+    @Override
+    public void delById(int id) {
+        usersDao.delById(id);
+    }
+
+    @Override
+    public Users queryByUsnAndPsw(Users user) throws SQLException {
+        return usersDao.queryByUsnAndPsw(user);
+    }
+
+    @Override
+    public void audit(int id) {
+        usersDao.audit(id);
+    }
+
+    @Override
+    public void repulse(int id) {
+        usersDao.repulse(id);
     }
 }

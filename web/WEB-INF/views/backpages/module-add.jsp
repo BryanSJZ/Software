@@ -32,7 +32,7 @@
 				</nav>
 				<nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
 					<ul class="cl">
-						<li>超级管理员</li>
+						<li>${sessionScope.user.username},<a href="${pageContext.request.contextPath}/user?method=logout">注销</a></li>
 					</ul>
 				</nav>
 			</div>

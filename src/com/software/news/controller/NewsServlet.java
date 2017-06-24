@@ -106,10 +106,12 @@ public class NewsServlet extends BaseServlet {
         String title = request.getParameter("title");
         String content = request.getParameter("content");
         String type = request.getParameter("type");
+        String author = request.getParameter("author");
         News news = new News();
         news.setTitle(title);
         news.setContent(content);
         news.setType(type);
+        news.setAuthor(author);
         newsService.newNews(news);
         return "r:news?method=list";
     }

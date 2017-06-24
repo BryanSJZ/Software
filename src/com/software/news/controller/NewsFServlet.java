@@ -30,6 +30,9 @@ public class NewsFServlet extends BaseServlet {
     public String list(HttpServletRequest request,HttpServletResponse response) throws Exception {
         int moduleId = Integer.parseInt(request.getParameter("module"));
         List<NewsModule> moduleList = newsModuleService.listAll();
+        if(moduleId == 0){
+            moduleId = moduleList.get(0).getModuleId();
+        }
 //        List<NewsDto> newsList = newsService.queryByModule(moduleId);
         SplitPage splitPage = new SplitPage();
         int totalRows = newsService.getTotalRows(moduleId);

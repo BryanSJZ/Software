@@ -26,10 +26,7 @@
 				</nav>
 				<nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
 					<ul class="cl">
-						<li>超级管理员</li>
-						<li class="dropDown dropDown_hover"> <a href="#" class="dropDown_A">admin <i class="Hui-iconfont">&#xe6d5;</i></a>
-		
-						</li>
+						<li>${sessionScope.user.username},<a href="${pageContext.request.contextPath}/user?method=logout">注销</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -58,14 +55,17 @@
 					</ul>
 				</dd>
 			</dl>
-			<dl id="menu-product">
-				<dt><i class="Hui-iconfont">&#xe620;</i> 用户管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-				<dd>
-					<ul>
-						<li><a href="${pageContext.request.contextPath}/user?method=list" title="">用户列表</a></li>
-					</ul>
-				</dd>
-			</dl>
+			<c:if test="${sessionScope.user.username eq 'admin'}">
+				<dl id="menu-product">
+					<dt><i class="Hui-iconfont">&#xe620;</i> 用户管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+					<dd>
+						<ul>
+							<li><a href="${pageContext.request.contextPath}/user?method=list" title="">用户列表</a></li>
+						</ul>
+					</dd>
+				</dl>
+			</c:if>
+
 			<dl id="menu-comments">
 				<dt><i class="Hui-iconfont">&#xe622;</i> 评论管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
 				<dd>
@@ -93,8 +93,9 @@
 			    title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 		<div class="Hui-article">
 			<article class="cl pd-20">
+				<img src="${pageContext.request.contextPath}/resources/photo/${user.photo}" style="width: 50px;height: 50px"><br><br>
 				<p class="f-20 text-success">欢迎您
-					<span>admin</span>
+					<span>${sessionScope.user.username}</span>
 				</p>
 			</article>
 

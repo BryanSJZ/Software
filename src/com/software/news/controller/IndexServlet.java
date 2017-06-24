@@ -12,7 +12,7 @@ import java.io.IOException;
  * @Author shanjz
  * @Time 2017/5/16 19:14
  */
-@WebServlet(name = "IndexServlet" , urlPatterns = "/index")
+@WebServlet(name = "IndexServlet" , urlPatterns = "/back")
 public class IndexServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request,response);

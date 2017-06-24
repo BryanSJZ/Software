@@ -13,6 +13,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspFactory;
 import javax.servlet.jsp.PageContext;
 import java.io.IOException;
@@ -39,7 +40,7 @@ public class UsersServlet extends BaseServlet {
      * @return 地址
      */
     public String toRegister(HttpServletRequest request,HttpServletResponse response){
-        return "f:添加用户页面";
+        return "f:WEB-INF/views/frontpages/register.jsp";
     }
 
     /**
@@ -93,7 +94,7 @@ public class UsersServlet extends BaseServlet {
      * @return 地址
      */
     public String toLogin(HttpServletRequest request,HttpServletResponse response){
-        return null;
+        return "f:WEB-INF/views/backpages/login.jsp";
     }
 
     /**
@@ -102,8 +103,29 @@ public class UsersServlet extends BaseServlet {
      * @param response 响应
      * @return 地址
      */
-    public String login(HttpServletRequest request,HttpServletResponse response){
-        return null;
+    public String login(HttpServletRequest request,HttpServletResponse response) throws SQLException {
+//        String flag = request.getParameter("flag");
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        Users user = new Users();
+        user.setUsername(username);
+        user.setPassword(password);
+        System.out.println(user.getUsername() + "/" + user.getPassword());
+        Users users = usersService.queryByUsnAndPsw(user);
+        if(user.getUsername().equals("admin")&&user.getPassword().equals("admin")){
+            HttpSession session = request.getSession();
+            session.setAttribute("user",user);
+            return "r:/back";
+        }else{
+            if(users != null){
+                HttpSession session = request.getSession();
+                session.setAttribute("user",users);
+                return "r:/back";
+            } else{
+                return this.toLogin(request,response);
+            }
+        }
+
     }
 
     /**
@@ -133,7 +155,9 @@ public class UsersServlet extends BaseServlet {
      * @return 地址
      */
     public String logout(HttpServletRequest request,HttpServletResponse response){
-        return null;
+        HttpSession session = request.getSession();
+        session.removeAttribute("user");
+        return "r:/user?method=toLogin";
     }
 
     /**
@@ -150,5 +174,23 @@ public class UsersServlet extends BaseServlet {
         request.setAttribute("list1",list1);
         request.setAttribute("list2",list2);
         return "f:WEB-INF/views/backpages/user-list.jsp";
+    }
+
+    public String delById(HttpServletRequest request,HttpServletResponse response) throws SQLException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        usersService.delById(id);
+        return this.list(request,response);
+    }
+
+    public String audit(HttpServletRequest request,HttpServletResponse response) throws SQLException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        usersService.audit(id);
+        return this.list(request,response);
+    }
+
+    public String repulse(HttpServletRequest request,HttpServletResponse response) throws SQLException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        usersService.repulse(id);
+        return this.list(request,response);
     }
 }

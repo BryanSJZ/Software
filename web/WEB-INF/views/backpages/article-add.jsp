@@ -39,7 +39,7 @@
 				</nav>
 				<nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
 					<ul class="cl">
-						<li>超级管理员</li>
+						<li>${sessionScope.user.username},<a href="${pageContext.request.contextPath}/user?method=logout">注销</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -115,6 +115,12 @@
 							<label class="form-label col-xs-4 col-sm-2">文章标题：</label>
 							<div class="formControls col-xs-8 col-sm-9">
 								<input type="text" class="input-text" id="" name="title">
+							</div>
+						</div>
+						<div class="row cl">
+							<label class="form-label col-xs-4 col-sm-2">文章作者：</label>
+							<div class="formControls col-xs-8 col-sm-9">
+								<input type="text" class="input-text" id="" name="author" value="${sessionScope.user.username}" readonly>
 							</div>
 						</div>
 

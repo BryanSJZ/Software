@@ -14,4 +14,12 @@ public interface UsersService {
     public void newUsers(Users users);
 
     public List<Users> queryByStatus(int status) throws SQLException;
+
+    public void delById(int id);
+
+    Users queryByUsnAndPsw(Users user) throws SQLException;
+
+    void audit(int id);
+
+    void repulse(int id);
 }

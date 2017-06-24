@@ -31,7 +31,7 @@
 				</nav>
 				<nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
 					<ul class="cl">
-						<li>超级管理员</li>
+						<li>${sessionScope.user.username},<a href="${pageContext.request.contextPath}/user?method=logout">注销</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -101,6 +101,7 @@
 		<div class="Hui-article">
 			<article class="cl pd-20">
 				<div class="mt-20">
+					未审核：<br>
 					<table class="table table-border table-bordered table-bg table-hover table-sort">
 						<thead>
 							<tr class="text-c">
@@ -118,16 +119,61 @@
 									<td>${user.username}</td>
 									<td class="f-14 td-manage">
 										<a style="text-decoration:none" class="ml-5" href="${pageContext.request.contextPath}/user?method=delById&id=${user.id}" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
+										<a href="${pageContext.request.contextPath}/user?method=audit&id=${user.id}">审核通过</a>
+										<a href="${pageContext.request.contextPath}/user?method=repulse&id=${user.id}">审核不通过</a>
 									</td>
 								</tr>
 							</c:forEach>
+						</tbody>
+					</table>
+					<hr>
+					已审核：<br>
+					<table class="table table-border table-bordered table-bg table-hover table-sort">
+						<thead>
+						<tr class="text-c">
+							<th width="80">ID</th>
+							<th width="80">头像</th>
+							<th width="80">用户</th>
+							<th width="40">操作</th>
+						</tr>
+						</thead>
+						<tbody>
+						<c:forEach items="${list1}" var="user" varStatus="status">
 							<tr class="text-c">
-								<td>10001</td>
-								<td>我是用户</td>
+								<td>${status.count}</td>
+								<td><img src="${pageContext.request.contextPath}/resources/photo/${user.photo}" style="width: 50px;height: 50px"></td>
+								<td>${user.username}</td>
 								<td class="f-14 td-manage">
-									<a style="text-decoration:none" class="ml-5" href="" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
+									<a style="text-decoration:none" class="ml-5" href="${pageContext.request.contextPath}/user?method=delById&id=${user.id}" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
+									<a href="${pageContext.request.contextPath}/user?method=repulse&id=${user.id}">审核不通过</a>
 								</td>
 							</tr>
+						</c:forEach>
+						</tbody>
+					</table>
+					<hr>
+					审核不通过：<br>
+					<table class="table table-border table-bordered table-bg table-hover table-sort">
+						<thead>
+						<tr class="text-c">
+							<th width="80">ID</th>
+							<th width="80">头像</th>
+							<th width="80">用户</th>
+							<th width="40">操作</th>
+						</tr>
+						</thead>
+						<tbody>
+						<c:forEach items="${list2}" var="user" varStatus="status">
+							<tr class="text-c">
+								<td>${status.count}</td>
+								<td><img src="${pageContext.request.contextPath}/resources/photo/${user.photo}" style="width: 50px;height: 50px"></td>
+								<td>${user.username}</td>
+								<td class="f-14 td-manage">
+									<a style="text-decoration:none" class="ml-5" href="${pageContext.request.contextPath}/user?method=delById&id=${user.id}" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a>
+									<a href="${pageContext.request.contextPath}/user?method=audit&id=${user.id}">审核通过</a>
+								</td>
+							</tr>
+						</c:forEach>
 						</tbody>
 					</table>
 				</div>
