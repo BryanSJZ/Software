@@ -84,7 +84,7 @@ public class UsersServlet extends BaseServlet {
             user.setPhoto(photo);
             user.setStatus(0);
             usersService.newUsers(user);
-        return null;
+        return "r:/newsf?method=list";
     }
 
     /**

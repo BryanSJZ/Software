@@ -131,7 +131,7 @@
                     </div>
                     <div class="row cl">
                         <label class="form-label col-xs-4 col-sm-2">文章内容：</label>
-                        <textarea id="editor" placeholder="请在这里输入" autofocus name="content ">${news.content}</textarea>
+                        <textarea name="content" id="editor" placeholder="请在这里输入" autofocus >${news.content}</textarea>
                         <script>
                             var editor = new Simditor({
                                 textarea: $('#editor')

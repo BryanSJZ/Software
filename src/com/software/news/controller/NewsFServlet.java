@@ -28,10 +28,13 @@ public class NewsFServlet extends BaseServlet {
     private NewsModuleService newsModuleService = new NewsModuleServiceImpl();
 
     public String list(HttpServletRequest request,HttpServletResponse response) throws Exception {
-        int moduleId = Integer.parseInt(request.getParameter("module"));
+        String module = request.getParameter("module");
         List<NewsModule> moduleList = newsModuleService.listAll();
-        if(moduleId == 0){
-            moduleId = moduleList.get(0).getModuleId();
+        int moduleId;
+        if(module == null){
+            moduleId = moduleList.get(0).getId();
+        } else {
+            moduleId = Integer.parseInt(module);
         }
 //        List<NewsDto> newsList = newsService.queryByModule(moduleId);
         SplitPage splitPage = new SplitPage();
