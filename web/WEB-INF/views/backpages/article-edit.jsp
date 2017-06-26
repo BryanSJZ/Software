@@ -68,14 +68,16 @@
                 </ul>
             </dd>
         </dl>
-        <dl id="menu-product">
-            <dt><i class="Hui-iconfont">&#xe620;</i> 用户管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-            <dd>
-                <ul>
-                    <li><a href="${pageContext.request.contextPath}/user?method=list" title="">用户列表</a></li>
-                </ul>
-            </dd>
-        </dl>
+        <c:if test="${sessionScope.user.username eq 'admin'}">
+            <dl id="menu-product">
+                <dt><i class="Hui-iconfont">&#xe620;</i> 用户管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
+                <dd>
+                    <ul>
+                        <li><a href="${pageContext.request.contextPath}/user?method=list" title="">用户列表</a></li>
+                    </ul>
+                </dd>
+            </dl>
+        </c:if>
         <dl id="menu-comments">
             <dt><i class="Hui-iconfont">&#xe622;</i> 评论管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>

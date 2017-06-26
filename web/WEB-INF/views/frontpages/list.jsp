@@ -39,11 +39,15 @@
                     <li index="10"><a href="">党建工作</a></li>
                     <li index="11"><a href="">教职员工</a></li>
                     <li index="12"><a href="">学院资讯</a></li>
+                    <li index="13"><a href="${pageContext.request.contextPath}/user?method=toRegister">申请成为管理员</a></li>
+                    <li index="14"><a href="${pageContext.request.contextPath}/back">后台</a></li>
+
                 </ul>
             </div>
         </div>
     </div>
-
+    <a href="${pageContext.request.contextPath}/user?method=toRegister">申请成为管理员</a>
+    <a href="${pageContext.request.contextPath}/back">后台</a>
     <div id="main">
         <div id="pic">
             <img src="${pageContext.request.contextPath}/resources/img/list_banner.jpg" alt="信息与软件工程学院">
