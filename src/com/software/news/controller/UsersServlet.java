@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import javax.servlet.jsp.JspFactory;
 import javax.servlet.jsp.PageContext;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
@@ -49,12 +50,9 @@ public class UsersServlet extends BaseServlet {
      * @param response 响应
      * @return 地址
      */
-    public String register(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException, SmartUploadException {
+    public String register(HttpServletRequest request,HttpServletResponse response) throws ServletException, IOException, SmartUploadException, NoSuchAlgorithmException {
     //        String username = request.getParameter("username");
     //        String password = request.getParameter("password");
-    //        MessageDigest md5=MessageDigest.getInstance("MD5");
-    //        BASE64Encoder base64en = new BASE64Encoder();
-    //        password = base64en.encode(md5.digest(password.getBytes("utf-8")));
     //        String photo = request.getParameter("photo");
             SmartUpload su = new SmartUpload();
     //        PageContext pageContext = JspFactory.getDefaultFactory().getPageContext(this, request, response, null, true, 8*1024, true);
@@ -64,6 +62,9 @@ public class UsersServlet extends BaseServlet {
             System.out.println(su.save("resources/photo"));
             String username = su.getRequest().getParameter("username");
             String password = su.getRequest().getParameter("password");
+            MessageDigest md5=MessageDigest.getInstance("MD5");
+            BASE64Encoder base64en = new BASE64Encoder();
+            password = base64en.encode(md5.digest(password.getBytes("utf-8")));
     //        MessageDigest md5=MessageDigest.getInstance("MD5");
     //        BASE64Encoder base64en = new BASE64Encoder();
     //        password = base64en.encode(md5.digest(password.getBytes("utf-8")));
@@ -103,10 +104,13 @@ public class UsersServlet extends BaseServlet {
      * @param response 响应
      * @return 地址
      */
-    public String login(HttpServletRequest request,HttpServletResponse response) throws SQLException {
+    public String login(HttpServletRequest request,HttpServletResponse response) throws SQLException, NoSuchAlgorithmException, UnsupportedEncodingException {
 //        String flag = request.getParameter("flag");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        MessageDigest md5=MessageDigest.getInstance("MD5");
+        BASE64Encoder base64en = new BASE64Encoder();
+        password = base64en.encode(md5.digest(password.getBytes("utf-8")));
         Users user = new Users();
         user.setUsername(username);
         user.setPassword(password);
