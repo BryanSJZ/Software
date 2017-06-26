@@ -16,7 +16,7 @@
 #main #main-right li .title {
 	display: inline-block;
 	vertical-align: top;
-	width: 634px;
+	width:506px;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
@@ -45,4 +45,7 @@
 }
 #main #main-right #page form input[type="text"] {
 	width: 30px;
+}
+#login {
+
 }

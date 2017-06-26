@@ -78,14 +78,6 @@
 					</dd>
 				</dl>
 			</c:if>
-			<dl id="menu-comments">
-				<dt><i class="Hui-iconfont">&#xe622;</i> 评论管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-				<dd>
-					<ul>
-						<li><a href="comment-list.html" title="评论列表">评论列表</a></li>
-					</ul>
-				</dd>
-			</dl>
 
 
 

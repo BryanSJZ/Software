@@ -15,10 +15,8 @@
     <div id="header">
         <div id="banner-wrapper">
             <div id="banner">
-                <form>
-                    <input type="text" name="" value="">
-                    <input type="submit" name="" value="">
-                </form>
+                    <a href="${pageContext.request.contextPath}/user?method=toRegister" id="register">注册管理员</a>
+                    <a href="${pageContext.request.contextPath}/back" id="login">后台</a>
             </div>
         </div>
         <div id="nav">
@@ -46,8 +44,8 @@
             </div>
         </div>
     </div>
-    <a href="${pageContext.request.contextPath}/user?method=toRegister">申请成为管理员</a>
-    <a href="${pageContext.request.contextPath}/back">后台</a>
+    <%--<a href="${pageContext.request.contextPath}/user?method=toRegister" id="register">注册管理员</a>--%>
+    <%--<a href="${pageContext.request.contextPath}/back" id="login">后台</a>--%>
     <div id="main">
         <div id="pic">
             <img src="${pageContext.request.contextPath}/resources/img/list_banner.jpg" alt="信息与软件工程学院">

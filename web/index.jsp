@@ -20,5 +20,8 @@
     <%--</form>--%>
   <a href="/newsf?method=list">前</a>
   <a href="/back">后</a>
+    <jsp:forward page="/newsf">
+      <jsp:param name="method" value="list"></jsp:param>
+    </jsp:forward>
   </body>
 </html>

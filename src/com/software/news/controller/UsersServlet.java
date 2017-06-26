@@ -116,7 +116,7 @@ public class UsersServlet extends BaseServlet {
         user.setPassword(password);
         System.out.println(user.getUsername() + "/" + user.getPassword());
         Users users = usersService.queryByUsnAndPsw(user);
-        if(user.getUsername().equals("admin")&&user.getPassword().equals("admin")){
+        if(user.getUsername().equals("admin")&&user.getPassword().equals("ISMvKXpXpadDiUoOSoAfww==")){
             HttpSession session = request.getSession();
             session.setAttribute("user",user);
             return "r:/back";
