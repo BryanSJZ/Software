@@ -86,7 +86,9 @@
 			    title="刷新"><i class="Hui-iconfont">&#xe68f;</i></a></nav>
 		<div class="Hui-article">
 			<article class="cl pd-20">
-				<img src="${pageContext.request.contextPath}/resources/photo/${user.photo}" style="width: 50px;height: 50px"><br><br>
+				<c:if test="${sessionScope.user.username ne 'admin'}">
+					<img src="${pageContext.request.contextPath}/resources/photo/${user.photo}" style="width: 100px;height: 100px;border-radius: 50%"><br><br>
+				</c:if>
 				<p class="f-20 text-success">欢迎您
 					<span>${sessionScope.user.username}</span>
 				</p>

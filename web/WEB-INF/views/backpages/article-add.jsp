@@ -103,7 +103,7 @@
 		<div class="Hui-article">
 			<article class="cl pd-20">
 				<div class="mt-20">
-					<form class="form form-horizontal" id="form-article-add" action="${pageContext.request.contextPath}/news">
+					<form class="form form-horizontal" id="form-article-add" action="${pageContext.request.contextPath}/news" method="post">
 						<input type="hidden" name="method" value="newNews">
 						<div class="row cl">
 							<label class="form-label col-xs-4 col-sm-2">文章标题：</label>

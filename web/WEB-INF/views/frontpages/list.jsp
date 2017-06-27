@@ -38,7 +38,7 @@
                     <li index="11"><a href="">教职员工</a></li>
                     <li index="12"><a href="">学院资讯</a></li>
                     <li index="13"><a href="${pageContext.request.contextPath}/user?method=toRegister">申请成为管理员</a></li>
-                    <li index="14"><a href="${pageContext.request.contextPath}/back">后台</a></li>
+                    <li index="14"><a href="${pageContext.request.contextPath}/back">登录后台</a></li>
 
                 </ul>
             </div>

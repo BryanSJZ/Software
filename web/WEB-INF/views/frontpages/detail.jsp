@@ -15,10 +15,7 @@
     <div id="header">
         <div id="banner-wrapper">
             <div id="banner">
-                                <form>
-                    <input type="text" name="" value="">
-                    <input type="submit" name="" value="">
-                </form>
+
             </div>
         </div>
         <div id="nav">
@@ -82,10 +79,10 @@
                 </div>
             </div>
             <hr />
-            <form id="comment">
-                <input type="text" name="" value=""><br/>
-                <input type="submit" name="" value="评论">
-            </form>
+            <%--<form id="comment">--%>
+                <%--<input type="text" name="" value=""><br/>--%>
+                <%--<input type="submit" name="" value="评论">--%>
+            <%--</form>--%>
         </div>
     </div>
     <div id="footer">
