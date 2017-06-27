@@ -1,6 +1,11 @@
 package com.software.news.util;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.*;
+import java.util.Properties;
 
 /**
  * @Description 连接数据库工具类
@@ -8,6 +13,30 @@ import java.sql.*;
  * @Date 2016/10/26 14:50
  */
 public class DBConn {
+    //尝试properties
+//    static String DRIVER;
+//    static String USERNAME;
+//    static String PASSWORD;
+//    static String URL;
+//    static {
+//        try{
+//            Properties properties = new Properties();
+//            FileInputStream in = new FileInputStream("DBConn.properties");
+//            properties.load(in);
+//            DRIVER = properties.getProperty("driver");
+//            System.out.println(DRIVER);
+//            USERNAME = properties.getProperty("username");
+//            PASSWORD = properties.getProperty("password");
+//            URL = properties.getProperty("url");
+//            in.close();
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//    }
+
     private String DRIVER = "com.mysql.jdbc.Driver";
     private String USERNAME = "root";
     private String PASSWORD = "root";
@@ -21,8 +50,9 @@ public class DBConn {
      * 第二步：建立数据库连接
      * @param dbName 数据库名
      */
-    public DBConn(String dbName){
+    public DBConn(String dbName) {
         try {
+//            System.out.println(DRIVER);
             Class.forName(DRIVER);
             URL = URL + dbName;
             conn = DriverManager.getConnection(URL,USERNAME,PASSWORD);

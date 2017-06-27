@@ -20,6 +20,6 @@ public interface NewsService {
     public List<News> queryAll();
     public List<NewsDto> queryAllNews();
     public List<NewsDto> queryByModule(int moduleId);
-    public List<NewsDto> queryByPage(SplitPage splitPage,int module);
+    public List<NewsDto> queryByPage(SplitPage splitPage,int module) throws ClassNotFoundException;
     public int getTotalRows(int module) throws SQLException;
 }

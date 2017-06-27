@@ -1,7 +1,6 @@
 package com.software.news.dao;
 
 import com.software.news.dto.NewsDto;
-import com.software.news.entity.News;
 import com.software.news.util.DBConn;
 import com.software.news.util.PageInterface;
 import com.software.news.util.SplitPage;
@@ -64,14 +63,15 @@ public class NewsDtoDao implements PageInterface {
     }
 
     @Override
-    public List<NewsDto> queryByPage(SplitPage sPage,int module) {
+//    public List<NewsDto> queryByPage(SplitPage sPage,int module) {
+    public <T> List<T> queryByPage(Class<?> c , SplitPage sPage, int module){
         DBConn dbConn = new DBConn("db_news");
         String sql = "SELECT t_news.id,title,content,time,module AS type,author FROM t_news LEFT JOIN t_news_module ON t_news_module.id=t_news.type WHERE t_news.type=" + module + " LIMIT ?,?";
         dbConn.preparedStatement(sql);
         dbConn.setInt(1,sPage.getPageRow() * (sPage.getCurrentPage() - 1));
         dbConn.setInt(2,sPage.getPageRow());
         ResultSet rs = dbConn.executeQuery();
-        List<NewsDto> list = new ArrayList<NewsDto>();
+        List<T> list = new ArrayList<T>();
         try {
             while(rs.next()){
                 NewsDto news = new NewsDto();
@@ -81,7 +81,7 @@ public class NewsDtoDao implements PageInterface {
                 news.setType(rs.getString("type"));
                 news.setAuthor(rs.getString("author"));
                 news.setTime(rs.getString("time"));
-                list.add(news);
+                list.add((T) news);
             }
             rs.close();
         } catch (SQLException e) {

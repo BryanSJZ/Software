@@ -1,9 +1,5 @@
 package com.software.news.util;
   
-import com.software.news.*;
-import com.software.news.dto.NewsDto;
-import com.software.news.entity.News;
-
 import java.sql.SQLException;
 import java.util.List;
   
@@ -14,10 +10,12 @@ import java.util.List;
 public interface PageInterface {  
     /** 
      * 查询所有记录，使用分页对象中的一些变量获取 
-     * @param sPage 
-     * @return list 
+     *
+     * @param c 泛型
+     * @param sPage
+     * @return list
      */  
-    public List<NewsDto> queryByPage(SplitPage sPage, int module);
+    public <T> List<T> queryByPage(Class<?> c , SplitPage sPage, int module);
   
     /** 
      * 查询记录条数 

@@ -59,9 +59,9 @@ public class NewsServiceImpl implements NewsService {
     }
 
     @Override
-    public List<NewsDto> queryByPage(SplitPage splitPage, int module) {
+    public List<NewsDto> queryByPage(SplitPage splitPage, int module) throws ClassNotFoundException {
         NewsDtoDao newsDtoDao = new NewsDtoDao();
-        return newsDtoDao.queryByPage(splitPage,module);
+        return newsDtoDao.queryByPage(NewsDto.class,splitPage,module);
     }
 
     @Override
