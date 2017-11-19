@@ -108,15 +108,15 @@ public class UsersServlet extends BaseServlet {
 //        String flag = request.getParameter("flag");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        MessageDigest md5=MessageDigest.getInstance("MD5");
-        BASE64Encoder base64en = new BASE64Encoder();
-        password = base64en.encode(md5.digest(password.getBytes("utf-8")));
+//        MessageDigest md5=MessageDigest.getInstance("MD5");
+//        BASE64Encoder base64en = new BASE64Encoder();
+//        password = base64en.encode(md5.digest(password.getBytes("utf-8")));
         Users user = new Users();
         user.setUsername(username);
         user.setPassword(password);
         System.out.println(user.getUsername() + "/" + user.getPassword());
         Users users = usersService.queryByUsnAndPsw(user);
-        if(user.getUsername().equals("admin")&&user.getPassword().equals("ISMvKXpXpadDiUoOSoAfww==")){
+        if(user.getUsername().equals("admin")&&user.getPassword().equals("admin")){
             HttpSession session = request.getSession();
             session.setAttribute("user",user);
             return "r:/back";

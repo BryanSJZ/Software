@@ -39,7 +39,7 @@ public class DBConn {
 
     private String DRIVER = "com.mysql.jdbc.Driver";
     private String USERNAME = "root";
-    private String PASSWORD = "root";
+    private String PASSWORD = "19971020sjZ;";
     private String URL = "jdbc:mysql://localhost:3306/";
     private Connection conn = null;
     private PreparedStatement ps = null;
